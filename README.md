@@ -1,31 +1,15 @@
-# Python Advanced Topics
+# 🐍 Python Advanced Topics
 
-This tutorial demonstrates **advanced Python concepts** including `*args`, `**kwargs`, scopes, decorators, lambda functions, recursion, and generators.  
-Each example is **fully commented** to help beginners understand how and why things work.
-
----
-
-## 🧩 Topics Covered
-1. *args and **kwargs
-2. Python Scope (local, global, nonlocal)
-3. Python Decorators
-4. Lambda (anonymous functions)
-5. Recursion
-6. Generators
+This document contains **well-explained code examples** for advanced Python concepts.  
+Each section is numbered and separated with emoji headers for clarity.  
+All examples are self-contained and runnable.
 
 ---
 
-## 📘 Code with Explanations
+## 1️⃣ *args and **kwargs
 
 ```python
-# -------------------------------
-# Python Advanced Topics
-# Topics: *args/**kwargs, Scope, Decorators, Lambda, Recursion, Generators
-# Each example includes comments explaining the behavior for beginners.
-# -------------------------------
-
-# 1) *args and **kwargs
-# ---------------------
+# *args collects extra positional arguments as a tuple
 def show_args(*args):
     print("args (tuple):", args)
     for i, val in enumerate(args, 1):
@@ -33,7 +17,7 @@ def show_args(*args):
 
 show_args(10, 20, "hello")
 
-
+# **kwargs collects extra keyword arguments as a dictionary
 def show_kwargs(**kwargs):
     print("\nkwargs (dict):", kwargs)
     for k, v in kwargs.items():
@@ -41,17 +25,24 @@ def show_kwargs(**kwargs):
 
 show_kwargs(name="Aref", age=25, country="Afghanistan")
 
-
+# Mixing positional, *args and **kwargs
 def mixed(a, b, *args, **kwargs):
     print(f"\nRequired a={a}, b={b}")
     print("Additional args:", args)
     print("Keyword args:", kwargs)
 
 mixed(1, 2, 3, 4, x=10, y=20)
+```
 
+📘 **Explanation:**  
+`*args` collects extra **positional arguments** into a tuple, and `**kwargs` collects **keyword arguments** into a dictionary.  
+You can mix them for flexible function definitions.
 
-# 2) Python Scope (local, global, nonlocal)
-# ----------------------------------------
+---
+
+## 2️⃣ Python Scope (local, global, nonlocal)
+
+```python
 def local_example():
     x = "local x"
     print("\nInside local_example:", x)
@@ -73,7 +64,6 @@ def modify_global():
 modify_global()
 print("Global g after modify_global():", g)
 
-
 def outer():
     x = "outer x"
     def inner():
@@ -83,12 +73,19 @@ def outer():
     inner()
     print("Outer sees x as:", x)
 
-print()
 outer()
+```
 
+📘 **Explanation:**  
+- **Local variables** exist inside a function.  
+- **Global variables** are defined outside all functions.  
+- **nonlocal** allows modifying variables in the **enclosing (outer)** function scope.
 
-# 3) Python Decorators
-# --------------------
+---
+
+## 3️⃣ Python Decorators
+
+```python
 from functools import wraps
 
 def simple_decorator(func):
@@ -111,7 +108,6 @@ print("Decorator returned:", ret)
 print("say.__name__:", say.__name__)
 print("say.__doc__:", say.__doc__)
 
-
 def repeat(times):
     def decorator(func):
         @wraps(func)
@@ -127,10 +123,17 @@ def hello(name):
     print("Hello", name)
 
 hello("Aref")
+```
 
+📘 **Explanation:**  
+Decorators let you **add functionality** to functions without changing their code.  
+`@repeat(3)` is a decorator **with arguments** that repeats the function three times.
 
-# 4) Lambda (anonymous) functions
-# -------------------------------
+---
+
+## 4️⃣ Lambda (Anonymous Functions)
+
+```python
 add = lambda x, y: x + y
 print("\nLambda add(3,5):", add(3, 5))
 
@@ -141,10 +144,16 @@ sorted_desc = sorted(nums, key=lambda n: -n)
 print("squared:", squared)
 print("evens:", evens)
 print("sorted_desc:", sorted_desc)
+```
 
+📘 **Explanation:**  
+A **lambda** is a small anonymous function, perfect for short one-line logic (e.g., with `map`, `filter`, or `sorted`).
 
-# 5) Recursion
-# ------------
+---
+
+## 5️⃣ Recursion
+
+```python
 def factorial(n):
     if n < 0:
         raise ValueError("Negative values not allowed")
@@ -162,10 +171,17 @@ def fib(n):
     return fib(n-1) + fib(n-2)
 
 print("fib(7):", fib(7))
+```
 
+📘 **Explanation:**  
+Recursion is when a function **calls itself**.  
+Used for problems that can be broken into smaller versions of themselves (e.g., factorial, Fibonacci).
 
-# 6) Generators
-# -------------
+---
+
+## 6️⃣ Generators
+
+```python
 def count_up_to(max_value):
     count = 1
     while count <= max_value:
@@ -194,25 +210,13 @@ next(g)
 g.send("no match here")
 g.send("this has hello inside")
 g.close()
-
-if __name__ == "__main__":
-    print("\n-- Summary Example Calls --")
-    show_args(1,2,3)
-    show_kwargs(a=1,b=2)
-    print("factorial(6):", factorial(6))
 ```
 
----
-
-## 💡 Notes
-- Use this file as a **learning script** by running it line-by-line.
-- Best for **intermediate Python learners** improving functional and conceptual understanding.
+📘 **Explanation:**  
+Generators are functions that **yield values lazily**, one at a time.  
+They are **memory-efficient** and great for processing large data streams.
 
 ---
-
-Made with ❤️ by **Muhammad Aref Rezvan Panah**
----
-
 ## 📎 Author
 👩‍💻 **Created by: ❤️ by **Muhammad Aref Rezvan Panah**
 📅 **Year:** 2025  
